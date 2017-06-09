@@ -1,0 +1,103 @@
+<!-- Pre-rendered: Delete Dialog Prompt -->
+								<div style="visibility: hidden">
+									<div class="md-dialog-container" id="deleteDialog">
+										<md-dialog class="prompt-modal-content">
+											<div class="prompt-modal-header">
+												<h1 class="prompt-modal-title">Delete Notification</h1>
+											</div>
+											<div class="prompt-modal-body">
+												<p><strong>Are you sure you want to permanently delete "{[{ notificationTitle }]}"?</strong></p>
+											</div>
+											<div class="prompt-modal-actions">
+												<md-button class="prompt-actions" ng-click="closeDeleteDialog()">
+													No
+												</md-button>
+												<md-button class="prompt-actions" ng-href="{[{ deleteId }]}">
+													Yes
+												</md-button>
+											</div>
+										</md-dialog>
+									</div>
+								</div>
+								<!-- end of Delete Dialog Prompt -->
+
+								<!-- Pre-rendered: Update Dialog Prompts -->
+								<div style="visibility: hidden">
+									<div class="md-dialog-container" id="updateDialog">
+										<md-dialog class="prompt-modal-content">
+											<div class="prompt-modal-header">
+												<h1 class="prompt-modal-title">Update Notification</h1>
+											</div>
+											<div class="prompt-modal-body">
+												<p><strong>Are you sure you want to update "{[{ notificationTitle }]}"?</strong></p>
+											</div>
+											<div class="prompt-modal-actions">
+												<md-button class="prompt-actions" ng-click="closeUpdateDialog()">
+													No
+												</md-button>
+												<md-button class="prompt-actions" ng-click="updateNotificationClick()">
+													Yes
+												</md-button>
+											</div>
+										</md-dialog>
+									</div>
+								</div>
+
+
+								<!-- Pre-rendered: Update Dialog Prompts -->
+								<div style="visibility: hidden">
+									<div class="md-dialog-container" id="successDialog">
+										<md-dialog class="prompt-modal-content">
+											<div class="prompt-modal-header">
+												<h1 class="prompt-modal-title">Success</h1>
+											</div>
+											<div class="prompt-modal-body">
+												<p><strong>"{[{ notificationTitle }]}" was updated successfully.</strong></p>
+											</div>
+											<div class="prompt-modal-actions">
+												<md-button class="prompt-actions" ng-click="closeSuccessDialog()">
+													ok
+												</md-button>
+											</div>
+										</md-dialog>
+									</div>
+								</div>
+
+								<div style="visibility: hidden">
+									<div class="md-dialog-container" id="errorDialog">
+										<md-dialog class="prompt-modal-content">
+											<div class="prompt-modal-header">
+												<h1 class="prompt-modal-title">Validation Error</h1>
+											</div>
+											<div class="prompt-modal-body">
+												<p><strong>Please complete all form fields.</strong></p>
+											</div>
+											<div class="prompt-modal-actions">
+												<md-button class="prompt-actions" ng-click="closeErrorDialog()">
+													ok
+												</md-button>
+											</div>
+										</md-dialog>
+									</div>
+								</div>
+								<!-- end of Update Dialog Prompt -->
+
+								<!-- Pre-rendered: Generate Email Dialog Prompts -->
+								<div style="visibility: hidden">
+									<div class="md-dialog-container" id="generateMailDialog">
+										<md-dialog class="prompt-modal-content">
+											<div class="prompt-modal-header">
+												<h1 class="prompt-modal-title">Generate Notification</h1>
+											</div>
+											<div class="prompt-modal-body">
+												<p><strong>Please remember to check FROM, TO, CC/BBC fields before sending to customers.</strong></p>
+											</div>
+											<div class="prompt-modal-actions">
+												<md-button class="prompt-actions" ng-click="confirmGenerateClick()">
+													ok
+												</md-button>
+											</div>
+										</md-dialog>
+									</div>
+								</div>
+								<!-- end of Generate Email Dialog Prompts -->

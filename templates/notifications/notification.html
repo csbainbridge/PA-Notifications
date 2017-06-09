@@ -1,0 +1,91 @@
+{% extends 'notifications/base_navigation.html' %}
+{% load static %}
+{% block title %} Notifications | Select {% endblock %}
+{% block content %}
+			<!-- Notifications card -->
+			<div class="notifications-card mdl-card mdl-shadow--2dp">
+				<div class="mdl-card__title">
+						<div class="icon-container">
+							<i class="material-icons">feedback</i>
+						</div> <!-- end of icon-container -->
+						<h1 class="notifications-card__title-text mdl-card__title-text" id="notification-card-title">Select an existing notification</h1> <!-- The contents of this element will change to 'Add a new notification' when the user clicks on the '+' button displayed at the top right hand side of the webpage -->
+				</div> <!-- end of mdl-card__title -->
+
+				<!-- Form Container / Select Notification Application -->
+				<div class="form-container" ng-app="selectNotification" ng-controller="selectNotificationFrmCtlr">
+					<form id="select-notification" method="" action="" enctype="multipart-form-data" ng-controller="selectDepartmentCtlr">{% csrf_token %}
+						<div class="notification-form-text-container">
+							{% if user.is_superuser %}
+								<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary" id="add-button"><i class="material-icons fab-button">note_add</i></button>
+							{% endif %}
+							<label id="form-label-1">To add a new notification template to the database please click on the blue '+' button.</label>
+							<br>
+							<br>
+							<label id="form-label-2">To send a notification please use the drop down menus below to select a notification, then click the "Generate" button.</label>
+						</div> <!-- end of adds-new-button -->
+						<div class="notification-group">
+							<label class="input-label">Select department</label>
+							<div class="notification-input">
+								<div class="not-found">{[{ typesNotFound }]}</div>
+								{{ select_form.department }}
+							</div>
+						</div> <!-- end of notification-input-1 -->
+						<div ng-controller="selectNotificationTypeCtlr">
+								<div class="notification-group">
+									<label class="input-label">Select notification type</label>
+									<div class="notification-input">
+										<div class="not-found">{[{ notficiationsNotFound }]}</div>
+										{{ select_form.notification_type }}
+									</div>
+								</div> <!-- end of notification-input-2 -->
+								<div class="notification-group" ng-controller="selectNotificationCtlr">
+									<label class="input-label" id="notification-name">Select notification</label>
+									<div class="notification-input">
+										{{ select_form.notification_name }}
+									</div> <!-- end of notification-input-3 -->
+								</div> <!-- end of input-group-3 -->
+								<div ng-controller="displayNotification">
+									<div class="notification-group">
+										<label class="input-label">{[{ carbonCopyType }]}</label>
+										<div class="notification-input" id="add-contact-notification-input-1" >
+											{{ select_form.notification_contacts }}
+										</div> <!-- end of notification-input-4 -->
+									</div> <!-- end of input-group-4 -->
+									<div class="notification-group">
+										<label class="input-label">Subject</label>
+										<div class="notification-input">
+											{{ select_form.subject }}
+										</div> <!-- end of notification-input-4 -->
+									</div> <!-- end of input-group-4 -->
+									<div class="notification-group">
+										<label class="input-label notification-text-area-label">Notification</label>
+										<div class="notification-input">
+											{{ select_form.body }}
+										</div> <!-- end of notification-input-4 -->
+									</div> <!-- end of input-group-4 -->
+								</div> <!-- end of displayNotification controller -->
+						</div> <!-- end of Select Notification Type Controller -->
+
+						<!-- Notification Actions Container -->
+						<div class="mdl-card__actions main-button-container">
+							<div class="sub-button-container" ng-controller="notificationActions" ng-model="setDeleteId">
+								{{ select_form.notification_id }}
+								<!-- <div class="not-found message animate-show-hide" ng-hide="alertMessage">{[{ updateMessage }]}</div> -->
+								{% if user.is_superuser %}
+									<md-button type="button" ng-disabled="deleteBtnStatus" ng-click="showDeleteDialog()" class="notification-button secondary-button" id="delete-button">delete</md-button>
+									<md-button type="button" ng-disabled="updateBtnStatus" ng-click="showUpdateDialog()" class="notification-button secondary-button" id="update-button">update</md-button>
+								{% endif %}
+								<!-- <a href="{[{ mailTo }]}" class="notification-button primary-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-buttonprimary">generate</a> -->
+								<md-button type="button" ng-disabled="generateMailBtnStatus" ng-click="showMailDialog()" class="notification-button primary-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" id="generate-button">generate</md-button>
+
+								{% include "notifications/notification_prompts.html" %}
+							</div>
+						</div>
+						<!-- end of Notification Actions Container -->
+					</form> <!-- end of select-notification -->
+				</div> <!-- end of form-container -->
+			</div> <!-- end of mdl-card -->
+
+{% endblock %}
+{% block modal %}
+{% endblock %}

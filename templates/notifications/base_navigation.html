@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} PA Notifications {% endblock %}
+{% block layout_navigation %}
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="layout">
+			<header class="mdl-layout__header">
+				<div class="mdl-layout-icon"></div>
+				<div class="mdl-layout__header-row">
+					<span class="mdl-layout__title"><strong>PA Notifications</strong></span> <!-- add title context here instead of hardcode -->
+					<div class="mdl-layout-spacer"></div> <!-- end of mdl-layout-spacer -->
+					<!-- Add user icon here before username-->
+					<div id="header-username"><strong>Logged in as: {{ user }} {% if not user.is_superuser %}({{ request.session.department }}){% else %}(Admin){% endif %}</strong></div> <!-- end of header-username -->
+				</div> <!-- end of mdl-layout__header-row -->
+			</header> <!-- end of headeer -->
+
+			<!-- Navigation drawer - opens with menu icon on any screen size -->
+			<div class="mdl-layout__drawer" id="drawer">
+				<div class="nav-close-button-container" id="close-button">
+					<i class="material-icons nav-close-button">clear</i>
+				</div> <!-- end of nav-close-button -->
+				<div id="nav-logo-container">
+					<img src="{% static 'img/palogo.svg' %}" id="nav-logo">
+				</div> <!-- end of nav-logo-container -->
+				<div id="nav-divider"></div>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link {% if request.resolver_match.url_name == 'home' or request.resolved_match.url_name == 'login' %}mdl-navigation__link--current{% endif %}" href="{% url 'home' %}">
+						<div class="nav-icon-container">
+							<i class="material-icons icons-nav">home</i>
+						</div> <!-- end of mdl-navigation__link -->
+						Home
+					</a>
+					<a class="mdl-navigation__link {% if request.resolver_match.url_name == 'notification' %}mdl-navigation__link--current{% endif %}" href="{% url 'notification' %}">
+						<div class="nav-icon-container">
+							<i class="material-icons icons-nav">feedback</i>
+						</div> <!-- end of nav-icon-container -->
+						Notifications
+					</a>
+					<!-- <a class="mdl-navigation__link {% if request.resolver_match.url_name == 'contact_admin' %}mdl-navigation__linkcurrent{% endif %}" href="#">
+							<div class="nav-icon-container">
+								<i class="material-icons icons-nav">contact_mail</i>
+							</div> <! end of mdl-navigation__link 
+							Contact Admin
+					</a> -->
+					<!--<a class="mdl-navigation__link {% if request.resolver.match.url_name == 'user_admin' %}mdl-navigation__linkcurrent{% endif %}" href="#">
+						<div class="nav-icon-container">
+							<i class="material-icons icons-nav">account_circle</i>
+						</div> <! end of mdl-navigation__link 
+						User Admin
+					</a>-->
+					<a class="mdl-navigation__link" href="{% url 'logout' %}">
+						<div class="nav-icon-container">
+							<i class="material-icons icons-nav">power_settings_new</i>
+						</div> <!-- end of mdl-navigation-container -->
+						Sign Out
+					</a>
+				</nav> <!-- end of mdl-navigation -->
+			</div> <!-- end of mdl-layout__drawer-->
+	{% block content %}
+	{% endblock %}
+	{% block modal %}
+	{% endblock %}
+</div> <!-- end of mdl-layout -->
+{% endblock %}

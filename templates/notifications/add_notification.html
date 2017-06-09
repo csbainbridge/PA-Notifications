@@ -1,0 +1,85 @@
+{% extends 'notifications/notification.html' %}
+{% load static %}
+{% block modal %}
+<div class="modal add-modal" id="add-notification-modal">
+	<div class="notification-modal-content">
+		<div class="notification-modal-header">
+			<i class="material-icons modal-close-button" id="modal-close-button">clear</i>
+			<i class="material-icons modal-icon">mode_edit</i>
+			<h1 class="modal-header">Add a new notification</h1>
+		</div>
+		<div class="user-modal-body">
+		<!-- TODO: Sort out the text displayed at the top of this model, its too far off the header. -->
+		<!-- TODO: Round the corners of the modal to the same radius as the dialog prompts that are displayed. -->
+			<div ng-app="addNotification" id="addNotificationModule" class="form-container add"> <!-- ng-controller="addNotificationCtlr" -->
+				<p class="modal-text">Too add a new notification please complete the fields below, then click on the 'Add' button.</p>
+				<form id="add-notification-form" method="" action="" entype="multi-form-data" >{% csrf_token %}
+				 	<div class="notification-group" ng-controller="addDepartmentCtlr">
+						<label class="modal-form-input-label">Choose a department:</label>
+						<div class="notification-input">
+							{{ add_form.department }}
+						</div>
+					</div>
+					<div class="notification-group" ng-controller="selectNotificationTypeCtlr">
+						<label class="modal-form-input-label">Choose notification type:</label>
+						<div class="notification-input">
+							{{ add_form.notification_type }}
+						</div>
+					</div>
+					<div class="notification-group" ng-controller="notificationNameCtlr">
+						<label class="modal-form-input-label">Enter notification name:</label>
+						<div class="notification-input">
+							{{ add_form.notification_name }}
+						</div>
+					</div>
+					<div class="notification-group" ng-controller="selectNotificationContactsCtlr">
+						<label class="modal-form-input-label">{[{ carbonCopyType }]}</label>
+						<div class="notification-input" id="add-contact-notification-input-2">
+							{{ add_form.notification_contacts }}
+						</div>
+					</div>
+					<div class="notification-group" ng-controller="subjectCtlr">
+						<label class="modal-form-input-label">Enter subject:</label>
+						<div class="notification-input">
+							{{ add_form.subject }}
+						</div>
+					</div>
+					<div class="notification-group" ng-controller="bodyCtlr">
+						<label class="modal-form-input-label">Enter Notification:</label>
+						<div class="notification-input">
+							{{ add_form.body }}
+						</div>
+					</div>
+					<div class="mdl-card__actions main-button-container" ng-controller="addNotificationActionCtlr">
+						<!-- <div class="not-found message">{[{ errorMessage }]}</div> -->
+						<div class="notification-modal-actions">
+							<button type="button" ng-click="addNotification()" class="notification-button primary-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" id="add-notification-button">Add</button>
+						</div>
+
+						<!-- Pre-rendered Error Dialog Prompt -->
+						<div style="visibility: hidden;z-index:999">
+							<div class="md-dialog-container" id="addNotificationDialog">
+								<md-dialog class="prompt-modal-content">
+									<div class="prompt-modal-header">
+										<h1 class="prompt-modal-title">{[{ promptTitle }]}</h1>
+									</div>
+									<div class="prompt-modal-body">
+										<p><strong>{[{ message }]}</strong></p>
+									</div>
+									<div class="prompt-modal-actions">
+										<md-button class="prompt-actions" ng-click="closeDialog()">
+											ok
+										</md-button>
+									</div>
+								</md-dialog>
+							</div>
+						</div>
+						<!-- end of Error Dialog Prompt -->
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
